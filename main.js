@@ -65,7 +65,7 @@ document
     }
 
     try {
-      const res = await fetch("https://polmaster78.onrender.com", {
+      const res = await fetch("https://polmaster78.onrender.com/send-form", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
