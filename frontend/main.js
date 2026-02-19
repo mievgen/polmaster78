@@ -65,7 +65,7 @@ document
     }
 
     try {
-      const res = await fetch("http://localhost:3000/send-form", {
+      const res = await fetch("https://polmaster78.onrender.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
