@@ -44,9 +44,13 @@ app.post("/send-form", async (req, res) => {
 
     res.json({ ok: true })
   } catch (err) {
-    console.error(err)
+    console.error("Telegram error:", err)
     res.status(500).json({ ok: false })
   }
 })
 
-app.listen(3000, () => console.log("Server started on 3000"))
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT, () => {
+  console.log("Server started on", PORT)
+})
