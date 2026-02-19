@@ -1,42 +1,45 @@
-require("dotenv").config()
-
 const express = require("express")
-const axios = require("axios")
 const cors = require("cors")
+const fetch = require("node-fetch")
+require("dotenv").config()
 
 const app = express()
 
 app.use(cors())
 app.use(express.json())
 
-// ==========================
-// 📩 Отправка заявки
-// ==========================
+// тест
+app.get("/", (req, res) => {
+  res.send("Backend работает 🚀")
+})
+
+// отправка формы
 app.post("/send-form", async (req, res) => {
   try {
     const { name, phone, message, honeypot } = req.body
 
-    // 🛡 Honeypot защита
+    // 🛑 антиспам
     if (honeypot) {
-      return res.status(400).json({
-        ok: false,
-        text: "Spam detected",
-      })
+      return res.status(400).json({ ok: false })
     }
 
     const text = `
-<b>Новая заявка с сайта</b>
-<b>Имя:</b> ${name}
-<b>Телефон:</b> ${phone}
-<b>Комментарий:</b> ${message}
+📩 Новая заявка с сайта
+
+👤 Имя: ${name}
+📞 Телефон: ${phone}
+💬 Комментарий: ${message || "-"}
 `
 
     const url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`
 
-    await axios.post(url, {
-      chat_id: process.env.CHAT_ID,
-      parse_mode: "html",
-      text,
+    await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: process.env.CHAT_ID,
+        text,
+      }),
     })
 
     res.json({ ok: true })
@@ -46,11 +49,4 @@ app.post("/send-form", async (req, res) => {
   }
 })
 
-// ==========================
-// 🚀 Запуск сервера
-// ==========================
-const PORT = process.env.PORT || 3000
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-})
+app.listen(3000, () => console.log("Server started on 3000"))
