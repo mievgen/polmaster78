@@ -65,13 +65,16 @@ document
     }
 
     try {
-      const res = await fetch("https://polmaster78.onrender.com/send-form", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        "https://polmaster78-backend.onrender.com/send-form",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
         },
-        body: JSON.stringify(data),
-      })
+      )
 
       if (!res.ok) throw new Error()
 
