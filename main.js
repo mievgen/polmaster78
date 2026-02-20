@@ -66,7 +66,7 @@ document
 
     try {
       const res = await fetch(
-        "https://polmaster78-backend.onrender.com/send-form",
+        "https://polmaster78.onrender.com/send-form",
         {
           method: "POST",
           headers: {
