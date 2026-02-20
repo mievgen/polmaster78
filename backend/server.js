@@ -31,9 +31,18 @@ app.post("/send-form", async (req, res) => {
 💬 Комментарий: ${message || "-"}
 `
 
-    const url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`
+    //const url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`
 
-    await fetch(url, {
+    // await fetch(url, {
+    //   method: "POST",
+    //  headers: { "Content-Type": "application/json" },
+    //  body: JSON.stringify({
+    //  chat_id: process.env.CHAT_ID,
+    // text,
+    //  }),
+    // })
+
+    const telegramRes = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -41,6 +50,16 @@ app.post("/send-form", async (req, res) => {
         text,
       }),
     })
+
+    const telegramData = await telegramRes.json()
+
+    console.log("Telegram response:", telegramData)
+
+    if (!telegramRes.ok) {
+      return res.status(500).json({ ok: false, telegram: telegramData })
+    }
+
+    res.json({ ok: true })
 
     res.json({ ok: true })
   } catch (err) {
