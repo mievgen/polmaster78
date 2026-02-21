@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Host: ukladka-linoleuma-spb.ru
+Sitemap: https://ukladka-linoleuma-spb.ru/sitemap.xml
