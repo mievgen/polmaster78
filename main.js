@@ -1,58 +1,63 @@
 function showContact(btn) {
   const contacts = {
-    // --- Телефон (Base64 по частям) ---
     phone: [
       "Kzc=", // +7
       "OTEx", // 911
       "MDE3", // 017
       "NTA2OQ==", // 5069
     ],
-
-    // --- Telegram ---
-    telegram: ["bGlub3Byb21uYXN0aWxfc3Bi"],
+    telegram: [
+      "aHR0cHM6Ly90Lm1lL2xpbm9tYXN0ZXI3OA==", // https://t.me/linomaster78
+    ],
   }
 
   const type = btn.dataset.type
-  let link = document.createElement("a")
+  const link = document.createElement("a")
 
   // 📞 ТЕЛЕФОН
-
   if (type === "phone") {
     let phone = ""
+
     contacts.phone.forEach((part) => {
       phone += atob(part)
     })
 
     link.href = "tel:" + phone
     link.className = "phone-number"
-    link.innerHTML = "📞 +7 (911) 017-50-69"
+    link.textContent = phone
   }
 
-  // ✈ TELEGRAM
-
+  // 💬 TELEGRAM
   if (type === "telegram") {
-    const tgUser = atob(contacts.telegram[0])
+    const tgLink = atob(contacts.telegram[0]).trim()
 
-    link.href = "https://t.me/" + tgUser
+    link.href = tgLink
     link.target = "_blank"
+    link.rel = "noopener noreferrer"
     link.className = "tg-button"
-    link.innerHTML = "✈"
+    link.innerHTML = `
+      <img 
+        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg"
+        width="40"
+        height="40"
+        alt="Telegram"
+      />
+    `
   }
 
+  // лёгкая защита от копирования
   link.oncopy = (e) => e.preventDefault()
-  link.oncut = (e) => e.preventDefault()
   link.oncontextmenu = (e) => e.preventDefault()
-  link.onmousedown = (e) => e.preventDefault()
 
   // анти-бот задержка
   setTimeout(() => {
     btn.replaceWith(link)
-  }, 700)
+  }, 600)
 }
 
 document
   .getElementById("tg-form")
-  .addEventListener("submit", async function (e) {
+  ?.addEventListener("submit", async function (e) {
     e.preventDefault()
 
     const form = this
@@ -65,16 +70,13 @@ document
     }
 
     try {
-      const res = await fetch(
-        "https://polmaster78.onrender.com/send-form",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
+      const res = await fetch("https://polmaster78.onrender.com/send-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      )
+        body: JSON.stringify(data),
+      })
 
       if (!res.ok) throw new Error()
 
