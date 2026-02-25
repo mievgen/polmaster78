@@ -7,7 +7,7 @@ function showContact(btn) {
       "NTA2OQ==", // 5069
     ],
     telegram: [
-      "aHR0cHM6Ly90Lm1lL2xpbm9tYXN0ZXI3OA==", // https://t.me/linomaster78
+      "aHR0cHM6Ly90Lm1lL3BvbG1hc3Rlcjc4", // https://t.me/polmaster78
     ],
   }
 
