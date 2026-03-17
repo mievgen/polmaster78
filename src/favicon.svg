@@ -1,0 +1,13 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+
+<style>
+.blue{fill:#003254}
+.orange{fill:#c8691e}
+</style>
+
+<polygon points="50,10 80,40 50,70 20,40" class="blue"/>
+<polygon points="50,40 80,70 50,100 20,70" class="orange"/>
+
+</svg>
+

@@ -1,89 +1,132 @@
-function showContact(btn) {
-  const contacts = {
-    phone: [
-      "Kzc=", // +7
-      "OTEx", // 911
-      "MDE3", // 017
-      "NTA2OQ==", // 5069
-    ],
-    telegram: [
-      "aHR0cHM6Ly90Lm1lL3BvbG1hc3Rlcjc4", // https://t.me/polmaster78
-    ],
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  /* =========================
+     ПОКАЗ КОНТАКТОВ
+  ========================= */
 
-  const type = btn.dataset.type
-  const link = document.createElement("a")
+  window.showContact = function (btn) {
+    const contacts = {
+      phone: ["Kzc=", "OTEx", "MDE3", "NTA2OQ=="],
+      telegram: ["aHR0cHM6Ly90Lm1lL3BvbG1hc3Rlcjc4"],
+    }
 
-  // 📞 ТЕЛЕФОН
-  if (type === "phone") {
-    let phone = ""
+    const type = btn.dataset.type
+    const link = document.createElement("a")
 
-    contacts.phone.forEach((part) => {
-      phone += atob(part)
-    })
+    /* --- телефон --- */
 
-    link.href = "tel:" + phone
-    link.className = "phone-number"
-    link.textContent = phone
-  }
+    if (type === "phone") {
+      let phone = ""
+      contacts.phone.forEach((part) => (phone += atob(part)))
 
-  // 💬 TELEGRAM
-  if (type === "telegram") {
-    const tgLink = atob(contacts.telegram[0]).trim()
+      link.href = "tel:" + phone
+      link.className = "phone-number"
+      link.textContent = phone
+    }
 
-    link.href = tgLink
-    link.target = "_blank"
-    link.rel = "noopener noreferrer"
-    link.className = "tg-button"
-    link.innerHTML = `
-      <img 
-        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg"
-        width="40"
-        height="40"
-        alt="Telegram"
-      />
-    `
-  }
+    /* --- telegram --- */
 
-  // лёгкая защита от копирования
-  link.oncopy = (e) => e.preventDefault()
-  link.oncontextmenu = (e) => e.preventDefault()
+    if (type === "telegram") {
+      const tgLink = atob(contacts.telegram[0])
 
-  // анти-бот задержка
-  setTimeout(() => {
+      link.href = tgLink
+      link.target = "_blank"
+      link.rel = "noopener noreferrer"
+      link.className = "tg-button"
+
+      link.innerHTML = `
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+        alt="Telegram">`
+    }
+
     btn.replaceWith(link)
-  }, 600)
-}
+  }
 
-document
-  .getElementById("tg-form")
-  ?.addEventListener("submit", async function (e) {
-    e.preventDefault()
+  /* =========================
+     ОТПРАВКА ФОРМЫ
+  ========================= */
 
-    const form = this
+  const form = document.getElementById("tg-form")
 
-    const data = {
-      name: form.name.value,
-      phone: form.phone.value,
-      message: form.message.value,
-      honeypot: form.honeypot.value,
-    }
+  if (form) {
+    const submitBtn = form.querySelector("button[type='submit']")
 
-    try {
-      const res = await fetch("https://polmaster78.onrender.com/send-form", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault()
 
-      if (!res.ok) throw new Error()
+      const data = {
+        name: form.name.value.trim(),
+        phone: form.phone.value.trim(),
+        message: form.message.value.trim(),
+        honeypot: form.honeypot.value,
+      }
 
-      alert("✅ Заявка отправлена!")
-      form.reset()
-    } catch (err) {
-      alert("❌ Ошибка отправки. Попробуйте позже.")
-      console.error(err)
-    }
-  })
+      /* анти-бот */
+
+      if (data.honeypot !== "") {
+        console.log("spam blocked")
+        return
+      }
+
+      if (!data.name || !data.phone) {
+        alert("Пожалуйста заполните имя и телефон")
+        return
+      }
+
+      if (submitBtn) submitBtn.disabled = true
+
+      try {
+        const res = await fetch("https://polmaster78.onrender.com/send-form", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+
+        if (!res.ok) throw new Error()
+
+        alert("✅ Заявка отправлена")
+        form.reset()
+      } catch (err) {
+        console.error(err)
+        alert("❌ Ошибка отправки")
+      } finally {
+        if (submitBtn) submitBtn.disabled = false
+      }
+    })
+  }
+
+  /* =========================
+     МАСКА ТЕЛЕФОНА
+  ========================= */
+
+  const phoneInput = document.getElementById("phone")
+
+  if (phoneInput) {
+    phoneInput.addEventListener("input", () => {
+      let digits = phoneInput.value.replace(/\D/g, "")
+
+      if (digits.startsWith("8")) {
+        digits = "7" + digits.slice(1)
+      }
+
+      if (!digits.startsWith("7")) {
+        digits = "7" + digits
+      }
+
+      const part1 = digits.substring(1, 4)
+      const part2 = digits.substring(4, 7)
+      const part3 = digits.substring(7, 9)
+      const part4 = digits.substring(9, 11)
+
+      let formatted = "+7"
+
+      if (part1) formatted += " (" + part1
+      if (part2) formatted += ") " + part2
+      if (part3) formatted += "-" + part3
+      if (part4) formatted += "-" + part4
+
+      phoneInput.value = formatted
+    })
+  }
+})

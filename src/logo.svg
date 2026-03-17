@@ -1,0 +1,49 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120">
+
+<style>
+.blue{fill:#003254}
+.orange{fill:#c8691e}
+</style>
+
+<!-- PM -->
+
+<text x="10" y="75"
+font-family="Segoe UI, Arial, sans-serif"
+font-weight="900"
+font-size="70"
+class="orange">P</text>
+
+<text x="65" y="75"
+font-family="Segoe UI, Arial, sans-serif"
+font-weight="900"
+font-size="70"
+class="blue">M</text>
+
+<!-- TILE SYMBOL -->
+
+<g transform="translate(55,100) scale(1.2)">
+
+<polygon points="0,-18 18,0 0,18 -18,0" class="blue"/>
+
+<polygon points="36,-18 54,0 36,18 18,0" class="orange"/>
+
+
+
+</g>
+
+<!-- BRAND -->
+
+<text x="170" y="72"
+font-family="Segoe UI, Arial, sans-serif"
+font-weight="700"
+font-size="50"
+class="blue">POLMASTER</text>
+
+<text x="465" y="72"
+font-family="Segoe UI, Arial, sans-serif"
+font-weight="700"
+font-size="50"
+class="orange">78</text>
+
+</svg>

@@ -1,0 +1,15 @@
+{
+  "name": "POLMASTER78",
+  "short_name": "POLMASTER",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#003254",
+  "icons": [
+    {
+      "src": "/src/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
