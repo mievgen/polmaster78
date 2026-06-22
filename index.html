@@ -4,48 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Укладка линолеума в СПб — цена от 350 ₽ | POLMASTER78</title>
+    <!-- ОСНОВНОЙ ЗАГОЛОВОК -->
+    <title>
+      Укладка линолеума в СПб — цена от 350 ₽/м² под ключ | POLMASTER78
+    </title>
 
+    <!-- МЕТА-ОПИСАНИЕ -->
     <meta
       name="description"
-      content="Профессиональная укладка линолеума в Санкт-Петербурге. ПВХ плитка, сварка швов, шлифовка пола, подготовка основания. Опыт более 10 лет. Цена от 350 ₽/м²."
+      content="Укладка линолеума, ПВХ‑плитки, сварка швов горячим и холодным методом, шлифовка и подготовка основания в Санкт‑Петербурге. Работаем более 10 лет. Цена от 350 ₽/м²."
     />
-    <meta property="og:title" content="Укладка линолеума в СПб - POLMASTER78" />
+
+    <!-- OPEN GRAPH -->
+    <meta
+      property="og:title"
+      content="Укладка линолеума в СПб — цена от 350 ₽/м² под ключ | POLMASTER78"
+    />
     <meta
       property="og:description"
-      content="Укладка линолеума, ПВХ плитки и сварка швов. Более 10 лет опыта."
+      content="Укладка линолеума, ПВХ‑плитки, сварка швов, шлифовка пола. Выезд по Санкт‑Петербургу. Опыт с 2013 года. От 350 ₽/м²."
     />
     <meta
       property="og:image"
       content="https://ukladka-linoleuma-spb.ru/src/preview.jpg"
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ukladka-linoleuma-spb.ru" />
+    <meta property="og:url" content="https://ukladka-linoleuma-spb.ru/" />
+
+    <!-- ПОДТВЕРЖДЕНИЕ ДЛЯ ЯНДЕКС.ВЕБМАСТЕРА -->
     <meta name="yandex-verification" content="d1ee7e6e6bb6df8c" />
 
+    <!-- КАНОНИЧЕСКИЙ URL -->
     <link rel="canonical" href="https://ukladka-linoleuma-spb.ru/" />
 
+    <!-- СТИЛИ -->
     <link rel="stylesheet" href="/src/style.css" />
 
+    <!-- ИКОНКИ И PWA -->
     <link rel="icon" href="/src/favicon.svg" type="image/svg+xml" />
     <link rel="alternate icon" href="/favicon.ico" />
     <link rel="preload" href="/src/logo.svg" as="image" />
-
     <link rel="apple-touch-icon" href="/src/icon-192.png" />
     <link rel="manifest" href="/manifest.json" />
+
+    <!-- SITEMAP -->
     <link rel="sitemap" href="https://ukladka-linoleuma-spb.ru/sitemap.xml" />
 
+    <!-- РАЗМЕТКА (JSON-LD) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
             "@type": "Organization",
+            "@id": "#organization",
             "name": "POLMASTER78",
-            "url": "https://ukladka-linoleuma-spb.ru/"
+            "url": "https://ukladka-linoleuma-spb.ru/",
+            "logo": "https://ukladka-linoleuma-spb.ru/src/logo.svg"
           },
           {
             "@type": "LocalBusiness",
+            "@id": "#business",
             "name": "POLMASTER78",
             "image": "https://ukladka-linoleuma-spb.ru/logo.png",
             "url": "https://ukladka-linoleuma-spb.ru/",
@@ -57,11 +76,114 @@
               "addressLocality": "Санкт-Петербург",
               "addressCountry": "RU"
             },
-            "areaServed": "Санкт-Петербург"
+            "areaServed": {
+              "@type": "City",
+              "name": "Санкт-Петербург"
+            }
+          },
+          {
+            "@type": "Service",
+            "name": "Укладка линолеума",
+            "description": "Профессиональная укладка бытового, полукоммерческого и коммерческого линолеума.",
+            "provider": { "@id": "#business" },
+            "areaServed": { "@id": "#business" },
+            "offers": {
+              "@type": "Offer",
+              "price": "350",
+              "priceCurrency": "RUB",
+              "unitText": "за м²",
+              "availability": "https://schema.org/InStock"
+            }
+          },
+          {
+            "@type": "Service",
+            "name": "Укладка ПВХ плитки",
+            "description": "Монтаж кварц-виниловой и ПВХ плитки с подготовкой основания.",
+            "provider": { "@id": "#business" },
+            "areaServed": { "@id": "#business" },
+            "offers": {
+              "@type": "Offer",
+              "price": "450",
+              "priceCurrency": "RUB",
+              "unitText": "за м²",
+              "availability": "https://schema.org/InStock"
+            }
+          },
+          {
+            "@type": "Service",
+            "name": "Сварка швов линолеума",
+            "description": "Горячая и холодная сварка швов линолеума с гарантией 2 года.",
+            "provider": { "@id": "#business" },
+            "areaServed": { "@id": "#business" },
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "RUB",
+              "availability": "https://schema.org/InStock"
+            }
+          },
+          {
+            "@type": "Service",
+            "name": "Шлифовка и подготовка пола",
+            "description": "Выравнивание, шлифовка основания, заливка стяжки, укладка фанеры.",
+            "provider": { "@id": "#business" },
+            "areaServed": { "@id": "#business" },
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "RUB",
+              "availability": "https://schema.org/InStock"
+            }
           }
         ]
       }
     </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      ;(function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            ;(m[i].a = m[i].a || []).push(arguments)
+          }
+        m[i].l = 1 * new Date()
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) {
+            return
+          }
+        }
+        ;((k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a))
+      })(
+        window,
+        document,
+        "script",
+        "https://mc.yandex.ru/metrika/tag.js?id=110066736",
+        "ym",
+      )
+
+      ym(110066736, "init", {
+        ssr: true,
+        webvisor: true,
+        clickmap: true,
+        ecommerce: "dataLayer",
+        referrer: document.referrer,
+        url: location.href,
+        accurateTrackBounce: true,
+        trackLinks: true,
+      })
+    </script>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/110066736"
+          style="position: absolute; left: -9999px"
+          alt=""
+        /></div
+    ></noscript>
+    <!-- /Yandex.Metrika counter -->
   </head>
 
   <body>
