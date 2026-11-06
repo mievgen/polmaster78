@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://polmaster78.ru/sitemap.xml
